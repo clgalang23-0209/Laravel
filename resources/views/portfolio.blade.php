@@ -1,32 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            padding: 60px;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 20px;
-            color: #555;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Portfolio</h1>
-        <p>This is my Laravel portfolio landing page.</p>
-    </div>
+
+    <h1>Christian Louie Galang</h1>
+
+    <p>
+        <strong>Profession:</strong> Computer Science Student <br>
+        <strong>Skills:</strong> HTML, CSS, PHP, Laravel, Java, Problem Solving <br>
+        <strong>School:</strong> [Your School Name]
+    </p>
+    
+    <hr>
+
+    <h2>About Me</h2>
+    <p>
+        Hello! I am a Computer Science student interested in programming, 
+        web development, and solving problems using technology.
+    </p>
+
+    <h2>Projects</h2>
+    <ul>
+        <li>
+            <strong>Project 1:</strong> A short description of your project.
+        </li>
+        <li>
+            <strong>Project 2:</strong> Another short description.
+        </li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>Email: yourname@example.com</p>
+    <p>Phone: 09XX-XXX-XXXX</p>
+
 </body>
 </html>
+
+
