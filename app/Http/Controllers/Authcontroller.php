@@ -22,9 +22,9 @@ class AuthController extends Controller
             'email' => 'required|email|max:100|unique:users',
             'password' => [
                 'required',
-                'min:5',
                 'confirmed',
-                'regex:/^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[!$%?&])[A-Za-z\d!$%?&]{6,}$/'
+                'min:6',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!$%?&])[A-Za-z\d!$%?&]{6,}$/'
             ],
         ]);
 

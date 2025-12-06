@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 
 // Home
 Route::get('/', function () {
-    return view('portfolio');
+    return view('dashboard');
 });
 
 // Register
@@ -21,4 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-
+// Logout
+Route::post('/logout', function () {
+    Auth::logout();                        // Log the user out
+    request()->session()->invalidate();    // Clear the session
+    request()->session()->regenerateToken(); // Regenerate CSRF token
+    return redirect()->route('login.form'); // Redirect to login page
+})->name('logout');
