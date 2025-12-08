@@ -24,13 +24,11 @@
             color: #fff;
             font-size: 1.2rem;
 
-            /* move logout to right side */
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Logout button in header */
         .logout-btn {
             background-color: #7e0000ff;
             color: white;
@@ -46,24 +44,38 @@
             background-color: #a60000ff;
         }
 
-        /* Layout */
+        /* MAIN LAYOUT */
         .hero {
             display: flex;
             height: 100vh;
         }
 
-        /* Image Section */
+        /* LEFT SIDE (IMAGE + MAP) */
         .hero .photo {
             width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .hero .photo img {
-            height: 100%;
             width: 100%;
+            height: 60%;  /* TOP PART */
             object-fit: cover;
         }
 
-        /* Content Section */
+        .map {
+            width: 100%;
+            height: 40%; /* BOTTOM PART */
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* RIGHT SIDE CONTENT */
         .hero .content {
             width: 50%;
             padding: 120px 60px;
@@ -102,7 +114,6 @@
             border-radius: 8px;
         }
 
-        /* Make ONLY the word “Contact” black */
         .contact-box h2 {
             color: #000;
         }
@@ -119,7 +130,6 @@
 <header>
     <div>Christian Louie Galang</div>
 
-    <!-- Logout moved to header on right side -->
     <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="logout-btn" type="submit">Logout</button>
@@ -128,9 +138,21 @@
 
 <section class="hero">
 
-    <!-- LEFT SIDE IMAGE -->
+    <!-- LEFT SIDE -->
     <div class="photo">
+
+        <!-- TOP IMAGE -->
         <img src="{{ asset('image/image.jpg') }}" alt="My Picture" />
+
+        <!-- BOTTOM GOOGLE MAP -->
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.3514693450134!2d120.58513987460373!3d15.14496316547396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f2ec51e3a0f1%3A0x5972d3f33ad0396d!2sCity%20College%20of%20Angeles!5e0!3m2!1sen!2sph!4v1708360000000"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+
     </div>
 
     <!-- RIGHT SIDE CONTENT -->
@@ -155,7 +177,7 @@
 
         <h2>Projects</h2>
         <ul>
-             <li><a href="https://www.figma.com/proto/1K2tfYPGTsrnCS4kaEBgyY/gym-website?node-id=0-1">Gym Webbase</a> – A gym modern system.</li>
+            <li><a href="https://www.figma.com/proto/1K2tfYPGTsrnCS4kaEBgyY/gym-website?node-id=0-1">Gym Webbase</a> – A modern gym system.</li>
             <li><a href="http://127.0.0.1:8000/dashboard">Portfolio Website</a> – A modern responsive portfolio.</li>
             <li><a href="http://127.0.0.1:8000/login">Laravel Login System</a> – Secure authentication with hashing.</li>
         </ul>
@@ -165,8 +187,9 @@
 
         <div class="contact-box">
             <h2>Contact</h2>
-            <p>Email: <a href="mailto:christiangalang61@gmail.com">christiangalang61@gmail.com</a></p>
+            <p>Email: <a href="https://mail.google.com/mail/u/0/#inbox">christiangalang61@gmail.com</a></p>
             <p>Phone: 0968-306-1743</p>
+            <p>Facebook: <a href="https://www.facebook.com/christian.louie.galang.2025">christianlouiegalang</a></p>
         </div>
 
     </div>
