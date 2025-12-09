@@ -22,10 +22,26 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-// Logout
+// -----------------------------
+// PUBLIC PAGES (should NOT require auth)
+// -----------------------------
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/projects', function () {
+    return view('project');
+})->name('projects');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+// Logout (protected)
 Route::post('/logout', function () {
-    Auth::logout();                        // Log the user out
-    request()->session()->invalidate();    // Clear the session
-    request()->session()->regenerateToken(); // Regenerate CSRF token
-    return redirect()->route('login.form'); // Redirect to login page
-})->name('logout');
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect()->route('login.form');
+})->middleware('auth')->name('logout');

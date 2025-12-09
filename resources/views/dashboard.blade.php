@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Christian Louie Galang | Portfolio</title>
+    <title>Portfolio</title>
 
     <style>
+        /* LOGOUT BUTTON (stick to bottom right) */
+        .logout-btn {
+            position: fixed;
+            bottom: 5px;
+            right: 25px;
+            background: #ff4444;
+            color: #fff;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: 0.3s;
+            z-index: 5;
+        }
+
+        .logout-btn:hover {
+            background: #ff2222;
+            transform: translateY(-2px);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,183 +40,172 @@
             color: #fff;
         }
 
-        header {
-            background: #2b2b2b;
-            padding: 20px 40px;
-            color: #fff;
-            font-size: 1.2rem;
-
+        /* NAVIGATION BAR */
+        .navbar {
+            width: 100%;
+            padding: 25px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
         }
 
-        .logout-btn {
-            background-color: #7e0000ff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* NAV BUTTONS */
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
             font-size: 1rem;
-            transition: 0.3s;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s ease;
         }
 
-        .logout-btn:hover {
-            background-color: #a60000ff;
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
 
-        /* MAIN LAYOUT */
+        /* MAIN HERO SECTION */
         .hero {
             display: flex;
             height: 100vh;
-        }
-
-        /* LEFT SIDE (IMAGE + MAP) */
-        .hero .photo {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hero .photo img {
             width: 100%;
-            height: 60%;  /* TOP PART */
+        }
+
+        /* LEFT SIDE IMAGE */
+        .left {
+            width: 50%;
+        }
+
+        .left img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .map {
-            width: 100%;
-            height: 40%; /* BOTTOM PART */
-        }
-
-        .map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
         /* RIGHT SIDE CONTENT */
-        .hero .content {
+        .right {
             width: 50%;
-            padding: 120px 60px;
+            background: #1f1f1f;
+            padding: 140px 80px;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* needed for absolute positioning of education link */
         }
 
-        .content h1 {
-            font-size: 4rem;
-            line-height: 4rem;
+        .right h1 {
+            font-size: 4.5rem;
             font-weight: bold;
-            margin-bottom: 20px;
+            line-height: 4.3rem;
         }
 
-        .content h2 {
-            margin-top: 30px;
-            color: #7e0000ff;
+        .right .line {
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            margin: 20px 0 10px 0;
+            opacity: 0.3;
         }
 
-        ul {
-            margin-top: 10px;
-            line-height: 1.8;
-        }
-
-        ul li a {
-            color: #ffcccc;
-            text-decoration: underline;
-        }
-
-        ul li a:hover {
-            color: #ffffff;
-        }
-
-        .contact-box {
+        .right p {
             margin-top: 20px;
-            background: #7e0000ff;
-            padding: 20px;
-            border-radius: 8px;
+            line-height: 1.6;
+            color: #bbbbbb;
+            max-width: 500px;
         }
 
-        .contact-box h2 {
-            color: #000;
-        }
-
-        a {
+        /* EDUCATION TEXT WITH LOGO AT BOTTOM */
+        .education-link {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
             color: #fff;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .education-link:hover {
+            opacity: 1;
             text-decoration: underline;
         }
 
+        .education-link img {
+            height: 24px;
+            width: auto;
+        }
     </style>
 </head>
+
 <body>
 
-<header>
-    <div>Christian Louie Galang</div>
+<!-- NAVIGATION -->
+<div class="navbar">
+    <div class="logo"></div>
 
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button class="logout-btn" type="submit">Logout</button>
-    </form>
-</header>
+    <div class="nav-links">
+        <a href="{{ route('dashboard') }}">Home</a>
+        <a href="{{ route('about') }}">About</a>
+        <a href="{{ route('projects') }}">Project</a>
+        <a href="{{ route('contact') }}">Contact</a>
+    </div>
+</div>
 
 <section class="hero">
 
-    <!-- LEFT SIDE -->
-    <div class="photo">
-
-        <!-- TOP IMAGE -->
-        <img src="{{ asset('image/image.jpg') }}" alt="My Picture" />
-
-        <!-- BOTTOM GOOGLE MAP -->
-        <div class="map">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.3514693450134!2d120.58513987460373!3d15.14496316547396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f2ec51e3a0f1%3A0x5972d3f33ad0396d!2sCity%20College%20of%20Angeles!5e0!3m2!1sen!2sph!4v1708360000000"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
-        </div>
-
+    <!-- LEFT IMAGE -->
+    <div class="left">
+        <img src="{{ asset('image/image.jpg') }}" alt="My Picture">
     </div>
 
     <!-- RIGHT SIDE CONTENT -->
-    <div class="content">
+    <div class="right">
 
-        <h1>My Portfolio</h1>
+        <h1>My<br>Portfolio</h1>
+
+        <div class="line"></div>  
 
         <p>
-            Hello! I'm Christian Louie Galang, a passionate Computer Science student 
-            who enjoys building websites, solving logical problems,
-            and learning new technologies.
+            "Hello, I’m Christian. Welcome to my portfolio.
+            Please take your time to explore and enjoy the work I’ve created."
         </p>
 
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>PHP, Laravel</li>
-            <li>Java</li>
-            <li>MySQL / Database Design</li>
-            <li>Problem Solving & Algorithms</li>
-        </ul>
+        <!-- EDUCATION TEXT AT BOTTOM WITH LOGO -->
+   <a class="education-link" href="https://cca.edu.ph/" target="_blank">
+    <i class="fa-solid fa-graduation-cap" style="font-size: 24px;"></i>
+    Enrolled in City College of Angeles
+</a>
 
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://www.figma.com/proto/1K2tfYPGTsrnCS4kaEBgyY/gym-website?node-id=0-1">Gym Webbase</a> – A modern gym system.</li>
-            <li><a href="http://127.0.0.1:8000/dashboard">Portfolio Website</a> – A modern responsive portfolio.</li>
-            <li><a href="http://127.0.0.1:8000/login">Laravel Login System</a> – Secure authentication with hashing.</li>
-        </ul>
-
-        <h2>Education</h2>
-        <p><strong>School:</strong> City College Of Angeles</p>
-
-        <div class="contact-box">
-            <h2>Contact</h2>
-            <p>Email: <a href="https://mail.google.com/mail/u/0/#inbox">christiangalang61@gmail.com</a></p>
-            <p>Phone: 0968-306-1743</p>
-            <p>Facebook: <a href="https://www.facebook.com/christian.louie.galang.2025">christianlouiegalang</a></p>
-        </div>
 
     </div>
 
 </section>
+
+<!-- LOGOUT BUTTON -->
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button class="logout-btn">Logout</button>
+</form>
 
 </body>
 </html>
